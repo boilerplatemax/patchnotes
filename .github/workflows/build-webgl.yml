@@ -13,7 +13,7 @@ jobs:
     steps:
       # 1️⃣ Checkout repository
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
         with:
           lfs: true  # enable if using Git LFS for large assets
 
@@ -28,7 +28,7 @@ jobs:
 
       # 3️⃣ Optional: Run tests (can skip if you don't have test scenes)
       - name: Run Unity tests
-        uses: game-ci/unity-test-runner@v4
+        uses: game-ci/unity-test-runner@v3
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
@@ -38,7 +38,7 @@ jobs:
 
       # 4️⃣ Build WebGL
       - name: Build WebGL
-        uses: game-ci/unity-builder@v4
+        uses: game-ci/unity-builder@v3
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
