@@ -4,7 +4,7 @@ using UnityEngine;
 public class Unit : MonoBehaviour
 {
     [Header("Wander Settings")]
-    public float wanderForce = 1f;      // force applied for random wandering
+    public float wanderForce = 1f;      // force applied for random wandering by units
     public float wanderIntervalMin = 1f; // min seconds between random forces
     public float wanderIntervalMax = 3f; // max seconds between random forces
 
