@@ -2,19 +2,36 @@
 <html lang="en-us">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity WebGL Player | patchnotes</title>
+    <style>
+      /* Make body take up full screen */
+      html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        background: #231F20;
+        overflow: hidden;
+      }
+
+      /* Responsive canvas */
+      #unity-canvas {
+        width: 100vw;     /* Full viewport width */
+        height: 100vh;    /* Full viewport height */
+        display: block;   /* Remove scrollbars from inline canvas */
+        background: #231F20;
+      }
+    </style>
   </head>
-  <body style="text-align: center">
-    <canvas id="unity-canvas" width=960 height=600 style="width: 960px; height: 600px; background: #231F20"></canvas>
+  <body>
+    <canvas id="unity-canvas"></canvas>
     <script src="Build/docs.loader.js"></script>
     <script>
+      // Add viewport meta for mobile scaling
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-        // Mobile device style: fill the whole browser client area with the game canvas:
         var meta = document.createElement('meta');
         meta.name = 'viewport';
         meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
-        document.getElementsByTagName('head')[0].appendChild(meta);
+        document.head.appendChild(meta);
       }
 
       createUnityInstance(document.querySelector("#unity-canvas"), {
@@ -25,8 +42,7 @@
         companyName: "TheGoofs",
         productName: "patchnotes",
         productVersion: "1.0",
-        // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
-        // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
+        matchWebGLToCanvasSize: true, // important: keeps render size in sync
       });
     </script>
   </body>
