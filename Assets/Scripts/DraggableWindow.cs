@@ -137,25 +137,26 @@ public class DraggableWindow : MonoBehaviour
         }
     }
 
-    void HandleKeyboardInput()
-    {
-        float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
+void HandleKeyboardInput()
+{
+    float h = 0f;
+    float v = 0f;
 
-        //Raw Input
-        Vector3 input = new Vector3(h, v, 0f);
+    if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) h = -1f;
+    if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) h = 1f;
+    if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) v = 1f;
+    if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) v = -1f;
 
-        //Prevent diagonal speed increase
-        if (input.sqrMagnitude > 1f)
-            input.Normalize();
+    Vector3 input = new Vector3(h, v, 0f);
+    if (input.sqrMagnitude > 1f)
+        input.Normalize();
 
-        Vector3 keyDelta = input * keyboardSpeed * Time.deltaTime;
-        Vector3 newPos = transform.position + keyDelta;
+    Vector3 keyDelta = input * keyboardSpeed * Time.deltaTime;
+    Vector3 newPos = transform.position + keyDelta;
 
-        newPos = ClampToMaxDistance(newPos);
+    transform.position = ClampToMaxDistance(newPos);
+}
 
-        transform.position = newPos;
-    }
 
     // --- NEW: indicator logic that moves along circle to face nearest Unit ---
     void HandleIndicator()

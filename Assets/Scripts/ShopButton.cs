@@ -88,6 +88,13 @@ public class ShopButton : MonoBehaviour
             cooldownFill.fillAmount = 1f; // full when ready
     }
 
+    public void SetCost(int newCost)
+{
+    cost = newCost;
+    UpdateInteractable(GameManager.Instance.GetCurrency());
+}
+
+
     private void ApplyTintToChildren(Color tint)
     {
         foreach (var img in GetComponentsInChildren<Image>())
